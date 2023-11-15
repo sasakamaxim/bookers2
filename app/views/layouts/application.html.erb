@@ -1,0 +1,55 @@
+
+<!DOCTYPE html>
+<html class = "fontawesome-i2svg-active fontawesome-i2svg-complete">
+  <head>
+    <title>Bookers2</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <script src="https://kit.fontawesome.com/87ca96e9a1.js" crossorigin="anonymous"></script>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <header>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class = "container">
+        <% if user_signed_in? %>
+          <a class="navbar-brand" href="<%= user_path(current_user.id) %>">Bookers</a>
+          <div class="collapse navbar-collapse">
+          <ul class="navbar-nav ml-auto">
+          <i class="fa-solid fa-house text-light nav-link"><%= link_to " Home", current_user, style: "color: white;" %></i>
+          <i class="fa-solid fa-users text-light nav-link"><%= link_to " Users", "/users", style: "color: white;" %></i>
+          <i class="fa-solid fa-book-open text-light nav-link"><%= link_to " Books", "/books", style: "color: white;" %></i>
+          <i class="fa-solid fa-right-from-bracket text-light nav-link"><%= link_to " Log out", destroy_user_session_path, method: :delete, style: "color: white;" %></i>
+          </ul>
+          </div>
+        <% else %>
+          <a class="navbar-brand" href="/"><span>Bookers</span></a>
+          <div class="collapse navbar-collapse">
+            <ul class="navbar-nav ml-auto">
+          <i class="fa-solid fa-house text-light nav-link"><%= link_to " Home", "/", style: "color: white;" %></i>
+          <i class="fa-solid fa-link text-light nav-link"><%= link_to " About", "/home/about", style: "color: white;" %></i>
+          <i class="fa-solid fa-user-plus text-light nav-link"><%= link_to " Sign up", new_user_registration_path, style: "color: white;" %></i>
+          <i class="fa-solid fa-right-to-bracket text-light nav-link"><%= link_to " Log in", new_user_session_path, style: "color: white;" %></i>
+          </ul>
+          </div>
+        <% end %>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <div>
+        <%= flash[:notice] %>
+      </div>
+              <%= yield %>
+    </main>
+
+    <footer>
+      <div>CopyRight Infratop.inc</div>
+    </footer>
+  </body>
+</html>
