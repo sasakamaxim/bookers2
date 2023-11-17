@@ -20,20 +20,20 @@
           <a class="navbar-brand" href="<%= user_path(current_user.id) %>">Bookers</a>
           <div class="collapse navbar-collapse">
           <ul class="navbar-nav ml-auto">
-          <i class="fa-solid fa-house text-light nav-link"><%= link_to " Home", current_user, style: "color: white;" %></i>
-          <i class="fa-solid fa-users text-light nav-link"><%= link_to " Users", "/users", style: "color: white;" %></i>
-          <i class="fa-solid fa-book-open text-light nav-link"><%= link_to " Books", "/books", style: "color: white;" %></i>
-          <i class="fa-solid fa-right-from-bracket text-light nav-link"><%= link_to " Log out", destroy_user_session_path, method: :delete, style: "color: white;" %></i>
+          <i class="fas fa-home text-light nav-link"><%= link_to " Home", current_user, style: "color: white;" %></i>
+          <i class="fas fa-users text-light nav-link"><%= link_to " Users", "/users", style: "color: white;" %></i>
+          <i class="fas fa-book-open text-light nav-link"><%= link_to " Books", "/books", style: "color: white;" %></i>
+          <i class="fas fa-sign-out-alt text-light nav-link"><%= link_to " Log out", destroy_user_session_path, method: :delete, style: "color: white;" %></i>
           </ul>
           </div>
         <% else %>
           <a class="navbar-brand" href="/"><span>Bookers</span></a>
           <div class="collapse navbar-collapse">
             <ul class="navbar-nav ml-auto">
-          <i class="fa-solid fa-house text-light nav-link"><%= link_to " Home", "/", style: "color: white;" %></i>
-          <i class="fa-solid fa-link text-light nav-link"><%= link_to " About", "/home/about", style: "color: white;" %></i>
-          <i class="fa-solid fa-user-plus text-light nav-link"><%= link_to " Sign up", new_user_registration_path, style: "color: white;" %></i>
-          <i class="fa-solid fa-right-to-bracket text-light nav-link"><%= link_to " Log in", new_user_session_path, style: "color: white;" %></i>
+          <i class="fas fa-home text-light nav-link"><%= link_to " Home", "/", style: "color: white;" %></i>
+          <i class="fas fa-link text-light nav-link"><%= link_to " About", "/home/about", style: "color: white;" %></i>
+          <i class="fas fa-user-plus text-light nav-link"><%= link_to " Sign up", new_user_registration_path, style: "color: white;" %></i>
+          <i class="fas fa-sign-in-alt text-light nav-link"><%= link_to " Log in", new_user_session_path, style: "color: white;" %></i>
           </ul>
           </div>
         <% end %>

@@ -29,7 +29,7 @@ before_action :is_matching_login_user, only: [:edit, :update, :destroy]
     @book = Book.new
     @book_data = Book.find(params[:id])
     @user = @book_data.user
-    # @user = User.find(params[:id])
+    @book_comment = BookComment.new
   end
 
   def edit
