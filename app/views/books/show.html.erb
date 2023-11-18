@@ -43,42 +43,41 @@
 
             <td>
               <% if @book_data.favorited_by?(current_user) %>
-
-
-                <i class="fas fa-heart text-red nav-link"><%= link_to @book_data.favorites.count, book_favorites_path(@book_data), method: :delete %></i>
-
-
+                <%= link_to book_favorites_path(@book_data), style: "color: red;", method: :delete, remote: true do %>
+                  <i class="fas fa-heart "></i>
+                  <span><%= @book_data.favorites.count %></span>
+                <% end %>
               <% else %>
-
-
-                <i class="fas fa-heart text-blue nav-link"><%= link_to @book_data.favorites.count, book_favorites_path(@book_data), method: :post %></i>
-
+                <%= link_to book_favorites_path(@book_data), style: "color: blue;", method: :post, remote: true do %>
+                  <i class="fas fa-heart"></i>
+                  <span><%= @book_data.favorites.count %></span>
+                <% end %>
               <% end %>
             </td>
 
             <td>
-              <div>
-              <p>コメント件数：<%= @book_data.book_comments.count %></p>
-              <% @book_data.book_comments.each do |book_comment| %>
-              <p><%= image_tag book_comment.user.get_profile_image(100,100) %></p>
-              <%= book_comment.user.name %>
-              <%= book_comment.created_at.strftime('%Y/%m/%d') %><%= book_comment.comment %>
-              <% if book_comment.user == current_user %>
-              <%= link_to "Destroy", book_book_comment_path(book_comment.book, book_comment), method: :delete %>
-              <% end %>
-              <% end %>
-              </div>
-              <div>
-              <%= form_with model: [@book_data, @book_comment] do |f| %>
-              <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
-              <%= f.submit "送信する" %>
-              <% end %>
-              </div>
+              <p>コメント数：<%= @book_data.book_comments.count %></p>
             </td>
-
           </tr>
         </tbody>
       </table>
+      <div>
+      <% @book_data.book_comments.each do |book_comment| %>
+        <%= image_tag book_comment.user.get_profile_image(50,50) %>
+        <label><%= book_comment.comment %></label>
+        <% if book_comment.user == current_user %>
+          <%= link_to "Destroy", book_book_comment_path(book_comment.book, book_comment), method: :delete, class: "btn btn-secondary" %>
+        <% end %><br>
+        <a href="<%= user_path(@user.id) %>"><%= book_comment.user.name %></a><br>
+      <% end %>
+      </div>
+
+      <div>
+        <%= form_with model: [@book_data, @book_comment] do |f| %>
+        <%= f.text_area :comment, size: "100x5" %><br>
+        <%= f.submit "送信" %>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>
